@@ -9,7 +9,7 @@
   get_url: url="https://www.kernel.org/pub/software/scm/git/git-{{git_version}}.tar.gz" dest="{{git_download_dir}}/git-{{git_version}}.tar.gz"
 
 - name: tarの解凍
-  unarchive: src="{{git_download_dir}}/git-{{git_version}}.tar.gz" dest="{{git_download_dir}}/"
+  command: tar xvfz {{git_download_dir}}/git-{{git_version}}.tar.gz chdir={{git_download_dir}} creates={{git_download_dir}}/git-{{git_version}}
 
 - name: インストール
   shell: "cd {{git_download_dir}}/git-{{git_version}} && make prefix=/usr/local all && make prefix=/usr/local install"

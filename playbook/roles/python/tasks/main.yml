@@ -1,0 +1,25 @@
+---
+# Setup/install tasks.
+- name: 必要なライブラリをyumインストール(zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel)
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - zlib-devel
+    - bzip2-devel
+    - openssl-devel
+    - ncurses-devel
+    - sqlite-devel
+    - readline-devel
+    - tk-devel
+
+- name: Python3.3.3ソースをダウンロード
+  get_url:
+    url:  https://www.python.org/ftp/python/3.3.3/Python-3.3.3.tgz
+    dest: /usr/local/src/
+
+- name: tarの解凍
+  command: tar xvfz /usr/local/src/Python-3.3.3.tgz chdir=/usr/local/src creates=/usr/local/src/Python-3.3.3
+
+- name: インストール
+  shell: 'cd /usr/local/src/Python-3.3.3 && ./configure && make && make install'
