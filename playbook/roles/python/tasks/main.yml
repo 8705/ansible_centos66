@@ -23,3 +23,9 @@
 
 - name: インストール
   shell: 'cd /usr/local/src/Python-3.3.3 && ./configure && make && make install'
+
+- name: pipインストール
+  shell: 'curl -kL https://bootstrap.pypa.io/get-pip.py | /usr/local/bin/python3.3'
+
+- name: pipインストール
+  shell: '/usr/local/bin/pip3.3 install virtualenv'
